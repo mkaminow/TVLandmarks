@@ -17,8 +17,17 @@ struct CategoryHome: View {
                 PageView(pages: modelData.features.map{ FeatureCard(landmark: $0)})
                     .aspectRatio(3 / 2, contentMode: .fit)
                     .listRowInsets(EdgeInsets())
-
+                
                 CategoryRow(categoryName: "All", items: modelData.landmarks)
+                VStack(alignment: .leading) {
+                    Text("All but UIKit")
+                        .font(.headline)
+                        .padding(.leading, 15)
+                        .padding(.top, 5)
+                    UICategoryRow(items: modelData.landmarks)
+                        .frame(height: 215)
+                        .listRowInsets(EdgeInsets())
+                }
                 ForEach(modelData.categories.keys.sorted(), id: \.self) { key in
                     CategoryRow(categoryName: key, items: modelData.categories[key]!)
                 }
